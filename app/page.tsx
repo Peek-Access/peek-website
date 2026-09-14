@@ -1,5 +1,7 @@
+import fs from "node:fs";
+import path from "node:path";
 import { Header } from "@/components/Header";
-import { FeatureDemo } from "@/components/FeatureDemo";
+import { Carousel } from "@/components/Carousel";
 import { EyeIcon } from "@/components/EyeIcon";
 
 const REPO = "https://github.com/Peek-Access/Peek";
@@ -33,7 +35,23 @@ const footerLinks = [
   { href: REPO, label: "Source code ↗" },
 ];
 
+function getScreenshots(): string[] {
+  const dir = path.join(process.cwd(), "public", "screenshots");
+  let files: string[] = [];
+  try {
+    files = fs
+      .readdirSync(dir)
+      .filter((f) => /\.(png|jpe?g|webp|gif|svg)$/i.test(f));
+  } catch {
+    files = [];
+  }
+  files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+  return files.map((f) => `/screenshots/${f}`);
+}
+
 export default function Home() {
+  const screenshots = getScreenshots();
+
   return (
     <>
       <a
@@ -46,60 +64,50 @@ export default function Home() {
 
       <main id="main">
         {/* Hero */}
-        <section className="bg-gradient-to-br from-[#f7faf8] via-[#f7faf8] to-[#edf7f0] px-6 py-16 sm:px-10 sm:py-20">
-          <div className="mx-auto grid max-w-[1200px] items-center gap-12 lg:grid-cols-[1.07fr_1fr] lg:gap-16">
-            <div>
-              <div className="flex items-center gap-3 text-xs font-bold uppercase tracking-[2px] text-accent before:h-0.5 before:w-6 before:bg-current">
-                Open source · Windows
-              </div>
-              <h1 className="mt-6 text-[44px] font-bold leading-[1.07] tracking-tight sm:text-[56px] lg:text-[65px]">
-                Not just a
-                <br />
-                screen reader.
-                <br />
-                <span className="text-accent">
-                  Your screen.
-                  <br />
-                  Your way.
-                </span>
-              </h1>
-              <p className="mt-6 max-w-[460px] text-lg leading-relaxed text-muted">
-                A local-first accessibility assistant for Windows — the
-                windows, processes and UI structure behind every control,
-                not just the words on screen.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <a
-                  href={`${REPO}/releases/latest`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-6 py-4 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
-                >
-                  Download for Windows <span aria-hidden="true">↓</span>
-                </a>
-                <a
-                  href={REPO}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-3 rounded-lg border border-[#b9cdc0] px-6 py-4 text-base font-semibold transition-transform hover:-translate-y-0.5"
-                >
-                  View on GitHub <span aria-hidden="true">↗</span>
-                </a>
-              </div>
-              <p className="mt-5 text-sm text-muted">
-                Free & open source <b className="px-2 font-medium text-[#92a79a]">·</b>{" "}
-                GPL-3.0 <b className="px-2 font-medium text-[#92a79a]">·</b> Windows x64
-              </p>
+        <section className="bg-gradient-to-b from-[#f2f8f4] to-white px-6 py-20 sm:px-10 sm:py-24">
+          <div className="mx-auto max-w-[680px] text-center">
+            <div className="mx-auto flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-[2px] text-accent">
+              Open source · Windows
             </div>
+            <h1 className="mt-6 text-[42px] font-bold leading-[1.12] tracking-tight sm:text-[54px]">
+              Not just a screen reader.
+              <br />
+              <span className="text-accent">Your screen. Your way.</span>
+            </h1>
+            <p className="mx-auto mt-6 max-w-[480px] text-lg leading-relaxed text-muted">
+              A local-first accessibility assistant for Windows — the
+              windows, processes and UI structure behind every control, not
+              just the words on screen.
+            </p>
 
-            <FeatureDemo />
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href={`${REPO}/releases/latest`}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-6 py-4 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
+              >
+                Download for Windows <span aria-hidden="true">↓</span>
+              </a>
+              <a
+                href={REPO}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-3 rounded-lg border border-[#b9cdc0] px-6 py-4 text-base font-semibold transition-transform hover:-translate-y-0.5"
+              >
+                View on GitHub <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+            <p className="mt-5 text-sm text-muted">
+              Free & open source <b className="px-2 font-medium text-[#92a79a]">·</b>{" "}
+              GPL-3.0 <b className="px-2 font-medium text-[#92a79a]">·</b> Windows x64
+            </p>
           </div>
         </section>
 
         {/* Principles */}
         <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
-          <div className="flex flex-wrap justify-between gap-x-6 gap-y-3 border-b border-line py-6 text-sm text-muted">
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-line py-6 text-sm text-muted sm:justify-between">
             <span>
               <strong className="mr-2 text-ink">Local-first</strong>
               Speech runs on your device
@@ -114,6 +122,19 @@ export default function Home() {
             </span>
           </div>
         </div>
+
+        {/* Screenshots */}
+        {screenshots.length > 0 && (
+          <section
+            id="screenshots"
+            className="mx-auto max-w-[1200px] px-6 py-16 sm:px-10 sm:py-20"
+          >
+            <h2 className="mb-8 text-center text-[28px] font-bold tracking-tight sm:text-[32px]">
+              See it in action
+            </h2>
+            <Carousel images={screenshots} />
+          </section>
+        )}
 
         {/* Features */}
         <section
@@ -140,29 +161,31 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="mx-auto max-w-[1200px] px-6 py-9 sm:px-10">
-        <div className="flex flex-col items-start justify-between gap-6 border-t border-line pt-8 sm:flex-row sm:items-center">
-          <a href="#" className="flex items-center gap-3 text-xl font-bold">
-            <EyeIcon className="h-8 w-8" />
-            Peek
-          </a>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-            {footerLinks.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                target={l.href.startsWith("#") ? undefined : "_blank"}
-                rel={l.href.startsWith("#") ? undefined : "noreferrer"}
-                className="hover:underline"
-              >
-                {l.label}
-              </a>
-            ))}
-          </nav>
+      <footer className="bg-paper">
+        <div className="mx-auto max-w-[1200px] px-6 py-9 sm:px-10">
+          <div className="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
+            <a href="#" className="flex items-center gap-3 text-xl font-bold">
+              <EyeIcon className="h-8 w-8" />
+              Peek
+            </a>
+            <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+              {footerLinks.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target={l.href.startsWith("#") ? undefined : "_blank"}
+                  rel={l.href.startsWith("#") ? undefined : "noreferrer"}
+                  className="hover:underline"
+                >
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+          </div>
+          <p className="mt-5 text-sm text-muted">
+            An open-source, GPL-3.0 accessibility assistant for Windows.
+          </p>
         </div>
-        <p className="mt-5 text-sm text-muted">
-          An open-source, GPL-3.0 accessibility assistant for Windows.
-        </p>
       </footer>
     </>
   );
