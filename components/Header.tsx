@@ -4,9 +4,7 @@ import { useState } from "react";
 import { EyeIcon } from "./EyeIcon";
 
 const links = [
-  { href: "#features", label: "Why Peek" },
-  { href: "#status", label: "Status" },
-  { href: "#help", label: "Resources" },
+  { href: "#features", label: "Features" },
   {
     href: "https://github.com/Peek-Access/Peek",
     label: "GitHub ↗",
@@ -58,12 +56,12 @@ export function Header() {
             </a>
           ))}
           <a
-            href="https://github.com/Peek-Access/Peek"
+            href="https://github.com/Peek-Access/Peek/releases/latest"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-5 py-3 text-[15px] font-semibold text-white transition-transform hover:-translate-y-0.5"
           >
-            View on GitHub <span aria-hidden="true">↗</span>
+            Download <span aria-hidden="true">↓</span>
           </a>
         </nav>
       </header>
