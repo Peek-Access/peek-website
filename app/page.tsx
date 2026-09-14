@@ -64,7 +64,7 @@ export default function Home() {
 
       <main id="main">
         {/* Hero */}
-        <section className="bg-gradient-to-b from-[#f2f8f4] to-white px-6 py-20 sm:px-10 sm:py-24">
+        <section className="bg-gradient-to-b from-[#f2f8f4] to-white px-6 pt-20 pb-14 sm:px-10 sm:pt-24 sm:pb-16">
           <div className="mx-auto max-w-[680px] text-center">
             <div className="mx-auto flex w-fit items-center gap-3 text-xs font-bold uppercase tracking-[2px] text-accent">
               Open source · Windows
@@ -108,7 +108,7 @@ export default function Home() {
         {/* Features */}
         <section
           id="features"
-          className="mx-auto max-w-[1200px] px-6 pb-16 pt-20 sm:px-10 sm:pb-20 sm:pt-24"
+          className="mx-auto max-w-[1200px] border-t border-line px-6 pb-16 pt-10 sm:px-10 sm:pb-20 sm:pt-12"
         >
           <h2 className="mb-10 text-[32px] font-bold tracking-tight sm:text-[38px]">
             Go beyond the words.
