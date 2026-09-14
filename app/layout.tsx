@@ -4,7 +4,7 @@ import "./globals.css";
 const siteUrl = "https://peek.nevermore-easley.workers.dev";
 const title = "Peek — Your screen. Your way.";
 const description =
-  "Peek is a local-first, open-source accessibility assistant for Windows. Follow your keyboard and mouse through native UI Automation, inspect the UI tree, fall back to OCR, and ask an AI of your choice when you need more context. GPL-3.0, under active early development.";
+  "Peek is a local-first, open-source accessibility assistant for Windows. Follow your keyboard and mouse, explore what's behind every control, and ask an AI of your choice when you need more context. GPL-3.0, under active early development.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,10 +16,8 @@ export const metadata: Metadata = {
     "screen reader",
     "accessibility",
     "Windows accessibility",
-    "UI Automation",
     "open source",
     "assistive technology",
-    "OCR",
     "text to speech",
   ],
   icons: {

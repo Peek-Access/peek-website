@@ -10,17 +10,17 @@ const pillars = [
   {
     num: "01",
     title: "Follow",
-    body: "Tab through any app, or hover with the mouse, and hear the name, role and state of what you’ve reached — via native Windows UI Automation.",
+    body: "Tab through any app, or hover with the mouse, and hear the name, role and state of whatever you’ve reached.",
   },
   {
     num: "02",
     title: "Explore",
-    body: "Browse a window’s full accessibility tree, not just what’s under the cursor.",
+    body: "Browse a window’s full structure, not just what’s under the cursor.",
   },
   {
     num: "03",
     title: "Understand",
-    body: "OCR reads text when there’s nothing else to go on. Optional, opt-in AI can describe the screen when you want more.",
+    body: "When there’s nothing else to go on, Peek can read the text on screen for you. Optional, opt-in AI can describe the screen when you want more.",
   },
 ];
 
@@ -105,41 +105,10 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Principles */}
-        <div className="mx-auto max-w-[1200px] px-6 sm:px-10">
-          <div className="flex flex-wrap justify-center gap-x-8 gap-y-3 border-b border-line py-6 text-sm text-muted sm:justify-between">
-            <span>
-              <strong className="mr-2 text-ink">Local-first</strong>
-              Speech runs on your device
-            </span>
-            <span>
-              <strong className="mr-2 text-ink">Your choice</strong>
-              AI assistance is opt-in
-            </span>
-            <span>
-              <strong className="mr-2 text-ink">Made to be shared</strong>
-              GPL-3.0 open source
-            </span>
-          </div>
-        </div>
-
-        {/* Screenshots */}
-        {screenshots.length > 0 && (
-          <section
-            id="screenshots"
-            className="mx-auto max-w-[1200px] px-6 py-16 sm:px-10 sm:py-20"
-          >
-            <h2 className="mb-8 text-center text-[28px] font-bold tracking-tight sm:text-[32px]">
-              See it in action
-            </h2>
-            <Carousel images={screenshots} />
-          </section>
-        )}
-
         {/* Features */}
         <section
           id="features"
-          className="mx-auto max-w-[1200px] px-6 py-16 sm:px-10 sm:py-20"
+          className="mx-auto max-w-[1200px] px-6 pb-16 pt-20 sm:px-10 sm:pb-20 sm:pt-24"
         >
           <h2 className="mb-10 text-[32px] font-bold tracking-tight sm:text-[38px]">
             Go beyond the words.
@@ -159,6 +128,16 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Screenshots */}
+        {screenshots.length > 0 && (
+          <section
+            id="screenshots"
+            className="mx-auto max-w-[1200px] px-6 pb-16 sm:px-10 sm:pb-20"
+          >
+            <Carousel images={screenshots} />
+          </section>
+        )}
       </main>
 
       <footer className="bg-paper">
