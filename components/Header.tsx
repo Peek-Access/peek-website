@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { EyeIcon } from "./EyeIcon";
+import { DownloadLink } from "./DownloadLink";
 
 const links = [
   { href: "#features", label: "Features" },
@@ -55,14 +56,9 @@ export function Header() {
               {link.label}
             </a>
           ))}
-          <a
-            href="https://github.com/Peek-Access/Peek/releases/latest"
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-5 py-3 text-[15px] font-semibold text-white transition-transform hover:-translate-y-0.5"
-          >
+          <DownloadLink className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-5 py-3 text-[15px] font-semibold text-white transition-transform hover:-translate-y-0.5">
             Download <span aria-hidden="true">↓</span>
-          </a>
+          </DownloadLink>
         </nav>
       </header>
     </div>

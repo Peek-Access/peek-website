@@ -3,6 +3,8 @@ import path from "node:path";
 import { Header } from "@/components/Header";
 import { Carousel } from "@/components/Carousel";
 import { EyeIcon } from "@/components/EyeIcon";
+import { DownloadLink } from "@/components/DownloadLink";
+import { ReleaseVersion } from "@/components/ReleaseVersion";
 
 const REPO = "https://github.com/Peek-Access/Peek";
 
@@ -81,14 +83,9 @@ export default function Home() {
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <a
-                href={`${REPO}/releases/latest`}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-6 py-4 text-base font-semibold text-white transition-transform hover:-translate-y-0.5"
-              >
+              <DownloadLink className="inline-flex items-center justify-center gap-3 rounded-lg bg-forest px-6 py-4 text-base font-semibold text-white transition-transform hover:-translate-y-0.5">
                 Download for Windows <span aria-hidden="true">↓</span>
-              </a>
+              </DownloadLink>
               <a
                 href={REPO}
                 target="_blank"
@@ -98,7 +95,8 @@ export default function Home() {
                 View on GitHub <span aria-hidden="true">↗</span>
               </a>
             </div>
-            <p className="mt-5 text-sm text-muted">
+            <p className="mt-5 flex flex-wrap items-center justify-center gap-x-2 text-sm text-muted">
+              <ReleaseVersion />
               Free & open source <b className="px-2 font-medium text-[#92a79a]">·</b>{" "}
               GPL-3.0 <b className="px-2 font-medium text-[#92a79a]">·</b> Windows x64
             </p>
@@ -148,17 +146,23 @@ export default function Home() {
               Peek
             </a>
             <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              {footerLinks.map((l) => (
-                <a
-                  key={l.href}
-                  href={l.href}
-                  target={l.href.startsWith("#") ? undefined : "_blank"}
-                  rel={l.href.startsWith("#") ? undefined : "noreferrer"}
-                  className="hover:underline"
-                >
-                  {l.label}
-                </a>
-              ))}
+              {footerLinks.map((l) =>
+                l.label === "Download" ? (
+                  <DownloadLink key={l.href} className="hover:underline">
+                    Download
+                  </DownloadLink>
+                ) : (
+                  <a
+                    key={l.href}
+                    href={l.href}
+                    target={l.href.startsWith("#") ? undefined : "_blank"}
+                    rel={l.href.startsWith("#") ? undefined : "noreferrer"}
+                    className="hover:underline"
+                  >
+                    {l.label}
+                  </a>
+                )
+              )}
             </nav>
           </div>
           <p className="mt-5 text-sm text-muted">
